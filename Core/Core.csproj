@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <Compile Remove="Class1.cs" />
+      <Compile Remove="Dtos\QuotationDto.cs" />
+      <Compile Remove="Dtos\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Remove="Dtos\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="Dtos\**" />
+    </ItemGroup>
+
+</Project>

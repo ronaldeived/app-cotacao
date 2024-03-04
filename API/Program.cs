@@ -1,4 +1,6 @@
-using API.Producers;
+using API.Services;
+using QuotationConsumer.DI;
+using QuotationProducer.DI;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -6,6 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddControllers();
 
 var app = builder.Build();
 
@@ -17,13 +20,6 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
-app.MapGet("/cotacao/{id}",(int id, IMessageProducer _messagePublisher) =>
-    {
-        _messagePublisher.SendMessage(new List<string>{"AEIOU"});
-        return Results.Accepted();
-    })
-    .WithName("GetCotacao")
-    .WithOpenApi();
+app.MapControllers();
 
 app.Run();

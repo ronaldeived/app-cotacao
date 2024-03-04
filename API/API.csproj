@@ -8,7 +8,10 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <PackageReference Include="JsonConverter.System.Text.Json" Version="0.5.0" />
+        <PackageReference Include="MediatR" Version="12.2.0" />
         <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.2"/>
+        <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
         <PackageReference Include="RabbitMQ.Client" Version="6.8.1" />
         <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0"/>
     </ItemGroup>
@@ -17,19 +20,30 @@
       <Content Include="..\.dockerignore">
         <Link>.dockerignore</Link>
       </Content>
+      <Content Remove="Producers\**" />
       <Content Remove="RabbitMQ\**" />
     </ItemGroup>
 
     <ItemGroup>
+      <Compile Remove="Producers\**" />
       <Compile Remove="RabbitMQ\**" />
     </ItemGroup>
 
     <ItemGroup>
+      <EmbeddedResource Remove="Producers\**" />
       <EmbeddedResource Remove="RabbitMQ\**" />
     </ItemGroup>
 
     <ItemGroup>
+      <None Remove="Producers\**" />
       <None Remove="RabbitMQ\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Application\Application.csproj" />
+      <ProjectReference Include="..\Core\Core.csproj" />
+      <ProjectReference Include="..\QuotationConsumer\QuotationConsumer.csproj" />
+      <ProjectReference Include="..\QuotationProducer\QuotationProducer.csproj" />
     </ItemGroup>
 
 </Project>
